@@ -3,6 +3,7 @@ package com.jongwoo.kakao.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -12,8 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jongwoo.kakao.service.ScatteringService;
+
 @RestController
 public class MainController {
+	
+	@Autowired
+	ScatteringService mss;
 	
 	@RequestMapping("/welcome")
 	public String welcome(@RequestHeader(value="X-USER-ID") String userId) throws InterruptedException {

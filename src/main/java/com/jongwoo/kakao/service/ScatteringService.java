@@ -4,14 +4,19 @@ package com.jongwoo.kakao.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.jongwoo.kakao.repository.MoneyScatteringRepository;
 import com.jongwoo.kakao.util.MoneyDistributer;
 
 @Component
 @Service
 public class ScatteringService {
+	
+	@Autowired
+	MoneyScatteringRepository msr;
 	
 	public Map<String, String> scattering(final String userId, 
 							 final String roomId, 
