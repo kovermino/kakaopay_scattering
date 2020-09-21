@@ -11,9 +11,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories
 @ComponentScan(basePackages = {"com.jongwoo.kakao.service"})
 @ComponentScan(basePackages = {"com.jongwoo.kakao.repository"})
-@ComponentScan(basePackages = {"com.jongwoo.kakao.vo"})
+@ComponentScan(basePackages = {"com.jongwoo.kakao.entity"})
 @ComponentScan(basePackages = {"com.jongwoo.kakao.controller"})
-@EntityScan("com.jongwoo.kakao.vo")
+@EntityScan("com.jongwoo.kakao.entity")
 public class Config {
 
 }

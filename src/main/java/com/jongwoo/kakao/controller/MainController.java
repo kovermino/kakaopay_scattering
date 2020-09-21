@@ -14,12 +14,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jongwoo.kakao.service.ScatteringService;
+import com.jongwoo.kakao.util.Constants;
 
 @RestController
 public class MainController {
 	
 	@Autowired
-	ScatteringService mss;
+	ScatteringService scatteringService;
 	
 	@RequestMapping("/welcome")
 	public String welcome(@RequestHeader(value="X-USER-ID") String userId) throws InterruptedException {
@@ -39,12 +40,8 @@ public class MainController {
 														  @RequestParam(value = "token", required = false) final String totalAmount,
 														  @RequestParam(value = "token", required = false) final String distributeCount) 
 	{
-		try {
-			
-		} catch (Exception e) {
-			
-		}
-		return new ResponseEntity<>(null, HttpStatus.OK);
+		Map<String, String> result = scatteringService.scattering(userId, roomId, totalAmount, distributeCount);
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
 
@@ -57,9 +54,10 @@ public class MainController {
 	@ResponseBody
 	@RequestMapping(value = "scatteredMoney", method = RequestMethod.PUT)
 	public ResponseEntity<Map<String, String>> receive(@RequestHeader(value="X-USER-ID") String userId,
-						  @RequestHeader(value="X-ROOM-ID") String roomId,
-						  @RequestParam(value = "token", required = false) final String token) {
-		return new ResponseEntity<>(null, HttpStatus.OK);
+													   @RequestHeader(value="X-ROOM-ID") String roomId,
+													   @RequestParam(value = "token", required = false) final String token) {
+		Map<String, String> result = scatteringService.receive(userId, roomId, token);
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
 	/**
@@ -73,9 +71,7 @@ public class MainController {
 																   @RequestHeader(value="X-ROOM-ID") String roomId,
 																   @RequestParam(value = "token", required = false) final String token)  throws InterruptedException
 	{
-		System.out.println(token);
-		Map<String, String> scatteringInfo = new HashMap<>();
-		scatteringInfo.put("time", "time");
+		Map<String, String> scatteringInfo = scatteringService.getScatteringStatus(userId, roomId, token);
 		return new ResponseEntity<>(scatteringInfo, HttpStatus.OK);
 	}
 

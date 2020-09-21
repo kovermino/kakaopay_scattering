@@ -27,5 +27,32 @@ class MoneyDistributerTest {
 		assertEquals(totalAmount, sum);
 		assertEquals(distributeCount, len);
 	}
+	
+	@Test
+	void when0dividedInto5Parts() {
+		int totalAmount = 0;
+		int distributeCount = 5;
+		assertThrows(IllegalArgumentException.class, () -> {
+			int[] dist = md.distributeMoney(totalAmount, distributeCount);
+	    });
+	}
+	
+	@Test
+	void when5000dividedInto0Parts() {
+		int totalAmount = 5000;
+		int distributeCount = 0;
+		assertThrows(IllegalArgumentException.class, () -> {
+			int[] dist = md.distributeMoney(totalAmount, distributeCount);
+	    });
+	}
+	
+	@Test
+	void whenTotalAmountBiggerThanDistributeCount() {
+		int totalAmount = 5000;
+		int distributeCount = 10000;
+		assertThrows(IllegalArgumentException.class, () -> {
+			int[] dist = md.distributeMoney(totalAmount, distributeCount);
+	    });
+	}
 
 }
