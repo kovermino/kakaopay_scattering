@@ -2,6 +2,7 @@
 
 1. 기반 기술
  - Spring boot 2.3.4
+ - Spring-JPA(ORM)
  - Gradle 6.6.1
  - java 8
  - JUnit 4
@@ -16,5 +17,5 @@
  - Postman을 통한 수동 API 호출
 
 [시간이 남는다면..]
-jacoco를 사용한 code coverage
+jacoco를 사용한 code coverage,
 database mock object 작성
